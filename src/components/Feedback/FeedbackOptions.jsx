@@ -1,6 +1,6 @@
 import React from "react";
 
-const Controls = ({ onGood, onNeutral, onBad }) => (
+const FeedbackOptions = ({ onGood, onNeutral, onBad }) => (
     <div>
         <button type="button" onClick={onGood}>Good</button>
         <button type="button" onClick={onNeutral}>Neutral</button>
@@ -8,4 +8,4 @@ const Controls = ({ onGood, onNeutral, onBad }) => (
     </div>
 );
 
-export default Controls;
+export default FeedbackOptions;

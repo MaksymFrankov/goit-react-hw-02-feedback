@@ -1,5 +1,8 @@
 import React from "react";
-import Controls from "./Controls";
+import FeedbackOptions from "./FeedbackOptions";
+import Statistics from "./Statistics";
+import Section from "./Section";
+import Notification from "./Notification";
 
 class Feedback extends React.Component {
     static defaultProps = {
@@ -54,23 +57,25 @@ class Feedback extends React.Component {
     render() {
         return (
             <div>
-                <h1> Please leave feedback </h1>
-                    <Controls 
+               <Section title="Please leave feedback">
+                <FeedbackOptions 
                     onGood={this.handleGood}
                     onNeutral={this.handleNeutral}
                     onBad={this.handleBad}
+                />
+                </Section>
+                <Section title="Statistics">
+                 {this.countTotalFeedback() >= 1   
+                ? <Statistics
+                    good={this.state.good}
+                    neutral={this.state.neutral}
+                    bad={this.state.bad}
+                    countTotalFeedback={this.countTotalFeedback}
+                    countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
                     />
-                <h2>Statistics</h2>
-                {this.countTotalFeedback() >=1 ? (
-                    <ul>
-                        <li>Good: {this.state.good}</li>
-                        <li>Neutral: {this.state.neutral}</li>
-                        <li>Bad: {this.state.bad}</li>
-                        <li>Total: {this.countTotalFeedback()}</li>
-                        <li>Positive feedback: {this.countPositiveFeedbackPercentage()}%</li>
-                    </ul>
-                ) : ("There is no feedback")
-                }
+                : <Notification message="There is no feedback"></Notification>
+                 }
+                </Section>
             </div>
         )
 
